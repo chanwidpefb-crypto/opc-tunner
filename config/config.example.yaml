@@ -1,0 +1,36 @@
+# Copy this file to config/config.yaml and edit before running the gateway.
+
+da:
+  # "simulated"   - built-in fake tags, useful to try the gateway with no PLC/DA server at hand
+  # "node-opc-da" - connects to a real OPC DA server over DCOM (no vendor client needed)
+  mode: simulated
+
+  # How often (ms) the gateway reads all mirrored tags from the DA server
+  # and pushes fresh values into the OPC UA server.
+  pollIntervalMs: 1000
+
+  # Only used when mode is "node-opc-da".
+  nodeOpcDa:
+    host: 192.168.1.50          # IP/hostname of the machine running the OPC DA server
+    domain: WORKGROUP           # Windows domain, or the DA server's hostname if not domain-joined
+    username: opcuser
+    password: "change-me"
+    # CLSID (GUID) of the target OPC DA server - look this up once under
+    # HKEY_CLASSES_ROOT\CLSID on the server machine, or in the vendor's docs.
+    # A ProgID (e.g. "Matrikon.OPC.Simulation.1") is NOT accepted here.
+    clsid: "{F8582CF2-88FB-11D0-B850-00C0F0104305}"
+    updateRateMs: 1000
+
+  # Optional allow-list: only mirror DA items whose itemId starts with one of
+  # these prefixes. Leave empty/omit to auto-mirror every item the server
+  # exposes (recommended - this is what avoids per-tag configuration).
+  includePrefixes: []
+
+ua:
+  port: 4840
+  resourcePath: /opc-tunner
+  # true = no username/password needed to connect (still uses UA's own
+  # transport security). Set to false and configure node-opcua's
+  # userManager if you need authenticated UA clients.
+  allowAnonymous: true
+  productName: opc-tunner

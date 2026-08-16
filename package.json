@@ -1,0 +1,46 @@
+{
+  "name": "opc-tunner",
+  "version": "1.0.0",
+  "description": "OPC DA to OPC UA gateway/tunnel - auto-discovers DA tags and re-exposes them as a standard OPC UA server, so other machines can read them without DCOM/OPC-Enum configuration.",
+  "type": "module",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js config/config.yaml",
+    "dev": "tsx src/index.ts config/config.yaml",
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chanwidpefb-crypto/opc-tunner.git"
+  },
+  "keywords": [
+    "opc-da",
+    "opc-ua",
+    "gateway",
+    "tunnel",
+    "dcom",
+    "scada"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chanwidpefb-crypto/opc-tunner/issues"
+  },
+  "homepage": "https://github.com/chanwidpefb-crypto/opc-tunner#readme",
+  "dependencies": {
+    "js-yaml": "^5.3.0",
+    "node-opc-da": "^1.0.7",
+    "node-opcua": "^2.176.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^26.2.0",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}
